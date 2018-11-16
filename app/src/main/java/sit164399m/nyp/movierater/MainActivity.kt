@@ -110,4 +110,13 @@ class MainActivity : AppCompatActivity() {
             )
         }
     }
+    fun rateMovie(v:View){
+        updateMovie(v)
+        if(movieName.text.isNotEmpty()&&movieDesc.text.isNotEmpty()&&releaseDate.text.isNotEmpty()) {
+            startActivity(
+                Intent(this, RateMovie::class.java)
+                    .putExtra("movieName", newMovie.movieName)
+            )
+        }
+    }
 }
