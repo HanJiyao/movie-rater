@@ -124,10 +124,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/empty"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/empty"/>
     <Button
             android:id="@+id/addBtn"
             android:layout_width="match_parent"
@@ -135,4 +131,26 @@
             android:text="@string/addBtn"
             android:onClick="addMovie"
     />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty"/>
+    <Button
+            android:id="@+id/viewBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/viewBtn"
+            android:onClick="viewDetails"
+    />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty"/>
+    <Button
+            android:id="@+id/rateBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rateBtn"
+    />
+
 </LinearLayout>
