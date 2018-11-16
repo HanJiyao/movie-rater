@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">MovieRater</string>
+    <string name="movieName">Name</string>
+    <string name="movieNameHint">Enter the title of movie</string>
+    <string name="movieDesc">Description</string>
+    <string name="movieDescHint">Enter a short description of movie</string>
+    <string name="movieLanguage">Language</string>
+    <string name="languageEnglish">English</string>
+    <string name="languageChinese">Chinese</string>
+    <string name="languageMalay">Malay</string>
+    <string name="languageTamil">Tamil</string>
+    <string name="releaseDate">Release date</string>
+    <string name="releaseDateHint">Enter release date here</string>
+    <string name="notSuitable">Not suitable for all audience</string>
+    <string name="violence">Violence</string>
+    <string name="languageUsed">Language used</string>
+    <string name="addBtn">ADD MOVIE</string>
+    <string name="empty"> </string>
 </resources>
