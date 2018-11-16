@@ -120,10 +120,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/empty"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/empty"/>
     <Button
             android:id="@+id/addBtn"
             android:layout_width="match_parent"
