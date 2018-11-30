@@ -11,71 +11,111 @@
         <ImageView
                 android:id="@+id/movieImage"
                 android:contentDescription="@string/movieImg"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/movie_icon"
-                android:layout_centerHorizontal="true"/>
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+        />
     </RelativeLayout>
-
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/movieName2"
-            />
+    />
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
     <TextView
             android:id="@+id/movieNameDisplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
     />
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/overview"/>
+            android:text="@string/movieDesc2"
+    />
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
     <TextView
             android:id="@+id/movieDescDisplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
     />
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/movieLanguage"/>
+            android:text="@string/reviews"
+    />
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+    <TextView
+            android:id="@+id/reviewDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reviewsDefault"
+            android:textSize="20sp"
+    />
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movieLanguage2"
+    />
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
     <TextView
             android:id="@+id/movieLanguageDisplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
     />
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/releaseDate"/>
+            android:text="@string/releaseDate2"/>
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
     <TextView
             android:id="@+id/releaseDateDisplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
     />
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/notSuitable2"/>
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
     <TextView
             android:id="@+id/notSuitableDisplay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-    />
-    <TextView
-            android:id="@+id/reasonTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/reason"/>
-    <TextView
-            android:id="@+id/reasonDisplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"

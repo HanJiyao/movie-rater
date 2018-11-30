@@ -11,10 +11,5 @@ class RateMovie : AppCompatActivity() {
         setContentView(R.layout.activity_rate_movie)
 
         rateMovie.text = "Enter your review for the movie: "+intent.getStringExtra("movieName")
-        star1.setPadding(10,80,10,0)
-        star2.setPadding(10,80,10,0)
-        star3.setPadding(10,80,10,0)
-        star4.setPadding(10,80,10,0)
-        star5.setPadding(10,80,10,0)
     }
 }

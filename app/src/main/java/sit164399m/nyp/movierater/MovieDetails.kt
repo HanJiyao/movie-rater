@@ -4,6 +4,8 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
+import android.view.ContextMenu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -17,24 +19,42 @@ class MovieDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
         movieImage.setImageResource(R.drawable.movie_icon)
-        movieImage.setPadding(0,30,0,15)
-        movieNameDisplay.setPadding(0,15,0,15)
         movieNameDisplay.text = intent.getStringExtra("movieName")
-        movieDescDisplay.setPadding(0,15,0,15)
         movieDescDisplay.text = intent.getStringExtra("movieDesc")
-        movieLanguageDisplay.setPadding(0,15,0,15)
         movieLanguageDisplay.text = intent.getStringExtra("language")
-        releaseDateDisplay.setPadding(0,15,0,15)
         releaseDateDisplay.text = intent.getStringExtra("releaseDate")
-        notSuitableDisplay.setPadding(0,15,0,15)
         notSuitableDisplay.text = intent.getStringExtra("suitable")
-        if (notSuitableDisplay.text == "Yes"){
-            reasonTitle.visibility = View.INVISIBLE
-            reasonDisplay.visibility = View.INVISIBLE
-        } else {
-            reasonDisplay.setPadding(0,15,0,15)
-            reasonDisplay.text = intent.getStringExtra("reason")
+        if (notSuitableDisplay.text == "No"){
+            notSuitableDisplay.text = "No"+" ( "+intent.getStringExtra("reason")+")";
+        }
+
+        val actionbar = supportActionBar
+        actionbar!!.title = "MovieRater"
+        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
+        registerForContextMenu(reviewDisplay)
+
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+
+        if(v?.id == R.id.reviewDisplay){
+            menu?.add(1,1001,1,"Add Review")
         }
     }
 
+    override fun onContextItemSelected(item: MenuItem?): Boolean {
+        startActivity(
+            Intent(this, RateMovie::class.java)
+                .putExtra("movieName", intent.getStringExtra("movieName"))
+        )
+        return super.onContextItemSelected(item)
+
+    }
 }

@@ -87,39 +87,29 @@
     />
     <LinearLayout
             android:id="@+id/notSuitableGroup"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:visibility="invisible">
+            android:visibility="invisible"
+            android:weightSum="1">
         <CheckBox
                 android:id="@+id/violence"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/violence"
+                android:layout_weight="0.5"
         />
         <CheckBox
                 android:id="@+id/languageUsed"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/languageUsed"
+                android:layout_weight="0.5"
         />
     </LinearLayout>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/empty"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/empty"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/empty"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/empty"/>
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
     <Button
             android:id="@+id/addBtn"
             android:layout_width="match_parent"
@@ -127,10 +117,6 @@
             android:text="@string/addBtn"
             android:onClick="addMovie"
     />
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/empty"/>
     <Button
             android:id="@+id/viewBtn"
             android:layout_width="match_parent"
@@ -138,10 +124,6 @@
             android:text="@string/viewBtn"
             android:onClick="viewDetails"
     />
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/empty"/>
     <Button
             android:id="@+id/rateBtn"
             android:layout_width="match_parent"

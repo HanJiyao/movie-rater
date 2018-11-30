@@ -13,58 +13,23 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
     />
-    <LinearLayout
+    <Space
             android:layout_width="match_parent"
+            android:layout_height="36dp"/>
+    <RatingBar
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-        <ImageView
-                android:id="@+id/star1"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:contentDescription="@string/starImg"
-                android:src="@drawable/star"
-                android:alpha="0.3"
-        />
-        <ImageView
-                android:id="@+id/star2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:contentDescription="@string/starImg"
-                android:src="@drawable/star"
-                android:alpha="0.3"
-        />
-        <ImageView
-                android:id="@+id/star3"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:contentDescription="@string/starImg"
-                android:src="@drawable/star"
-                android:alpha="0.3"
-        />
-        <ImageView
-                android:id="@+id/star4"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:contentDescription="@string/starImg"
-                android:src="@drawable/star"
-                android:alpha="0.3"
-        />
-        <ImageView
-                android:id="@+id/star5"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:contentDescription="@string/starImg"
-                android:src="@drawable/star"
-                android:alpha="0.3"
-        />
-    </LinearLayout>
+            android:rating="0"
+            android:stepSize="0.1" />
     <EditText
-            android:minLines="5"
             android:inputType="textMultiLine"
+            android:lines="8"
+            android:minLines="4"
+            android:gravity="top|start"
             android:hint="@string/rateMovieHint"
             android:autofillHints="@string/rateMovieHint"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"/>
 </LinearLayout>

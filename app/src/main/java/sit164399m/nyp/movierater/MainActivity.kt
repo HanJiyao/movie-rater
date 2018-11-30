@@ -20,9 +20,10 @@ class MainActivity : AppCompatActivity() {
         var releaseDate:String,
         var suitable:String,
         var suitable2: String,
-        var reason:String)
+        var reason:String,
+        var reason2:String)
     var newMovie = Movie(
-        "","","","","","","")
+        "","","","","","","","")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -75,8 +76,15 @@ class MainActivity : AppCompatActivity() {
         val suitable = if(notSuitable.isChecked) {"false\nReason:\n"}else{"true"}
         val suitable2 = if(notSuitable.isChecked) {"No"}else{"Yes"}
         var reason = ""
-        if(languageUsed.isChecked){reason += "Language\n"}
-        if(violence.isChecked){reason += "Violence\n"}
+        var reason2 = ""
+        if(languageUsed.isChecked){
+            reason += "Language\n"
+            reason2 += "Language Used "
+        }
+        if(violence.isChecked){
+            reason += "Violence\n"
+            reason2 += "Violence "
+        }
         newMovie = Movie(
             movieName.text.toString(),
             movieDesc.text.toString(),
@@ -84,7 +92,8 @@ class MainActivity : AppCompatActivity() {
             releaseDate.text.toString(),
             suitable,
             suitable2,
-            reason)
+            reason,
+            reason2)
 
     }
     fun suitable(v:View) {
@@ -106,7 +115,7 @@ class MainActivity : AppCompatActivity() {
                     .putExtra("language", newMovie.language)
                     .putExtra("releaseDate", newMovie.releaseDate)
                     .putExtra("suitable", newMovie.suitable2)
-                    .putExtra("reason", newMovie.reason)
+                    .putExtra("reason", newMovie.reason2)
             )
         }
     }
