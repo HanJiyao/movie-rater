@@ -4,29 +4,55 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.RadioButton
 import android.widget.TextView
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_add_movie.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
-    data class Movie(
-        var movieName:String,
-        var movieDesc:String,
-        var language:String,
-        var releaseDate:String,
-        var suitable:String,
-        var suitable2: String,
-        var reason:String,
-        var reason2:String)
-    var newMovie = Movie(
-        "","","","","","","","")
+class AddMovie : AppCompatActivity() {
+
+    class Movie {
+        var movieName = ""
+        var movieDesc = ""
+        var language = ""
+        var releaseDate =""
+        var suitable = ""
+        var suitable2 = ""
+        var reason = ""
+        var reason2 = ""
+
+        fun displayToast():String{
+            return "Title = " + this.movieName +
+                    "\nOverview = " + this.movieDesc +
+                    "\nRelease date = " + this.releaseDate +
+                    "\nLanguage = " + this.language +
+                    "\nSuitable for all ages = " + this.suitable + this.reason
+        }
+
+        fun editMovie(movieName:String,movieDesc:String,language:String,releaseDate:String,
+                      suitable:String,suitable2:String,reason:String,reason2:String){
+            this.movieName = movieName
+            this.movieDesc = movieDesc
+            this.language = language
+            this.releaseDate =releaseDate
+            this.suitable = suitable
+            this.suitable2 = suitable2
+            this.reason = reason
+            this.reason2 = reason2
+
+        }
+    }
+
+    var newMovie = Movie()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_add_movie)
 
         languageEnglish.isChecked = true
         notSuitable.isChecked = false
@@ -42,27 +68,45 @@ class MainActivity : AppCompatActivity() {
             val sdf = SimpleDateFormat(myFormat, Locale.US)
             textView.text = sdf.format(cal.time)
         }
+
         textView.setOnClickListener {
-            DatePickerDialog(this@MainActivity, dateSetListener,
+            DatePickerDialog(this@AddMovie, dateSetListener,
                 cal.get(Calendar.YEAR),
                 cal.get(Calendar.MONTH),
                 cal.get(Calendar.DAY_OF_MONTH)).show()
         }
+
+        val actionbar = supportActionBar
+        actionbar!!.title = "MovieRater"
+        actionbar.setDisplayHomeAsUpEnabled(true)
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    private fun clearScreen(){
+        movieName.text.clear()
+        movieDesc.text.clear()
+        releaseDate.text.clear()
+        languageEnglish.isChecked = true
+        notSuitable.isChecked = false
+        notSuitableGroup.visibility=View.INVISIBLE
+        violence.isChecked=false
+        languageUsed.isChecked=false
+    }
+
     fun addMovie(v:View){
-        updateMovie(v)
+        updateMovie()
         if(movieName.text.isNotEmpty()&&movieDesc.text.isNotEmpty()&&releaseDate.text.isNotEmpty()) {
             Toast.makeText(
-                this,
-                "Title = " + newMovie.movieName +
-                        "\nOverview = " + newMovie.movieDesc +
-                        "\nRelease date = " + newMovie.releaseDate +
-                        "\nLanguage = " + newMovie.language +
-                        "\nSuitable for all ages = " + newMovie.suitable + newMovie.reason, Toast.LENGTH_LONG
+                this, newMovie.displayToast()
+                , Toast.LENGTH_LONG
             ).show()
         }
     }
-    private fun updateMovie(v:View){
+    private fun updateMovie(){
         if(movieName.text.isEmpty()){
             movieName.error = "Field empty"
         }
@@ -85,7 +129,7 @@ class MainActivity : AppCompatActivity() {
             reason += "Violence\n"
             reason2 += "Violence "
         }
-        newMovie = Movie(
+        newMovie.editMovie(
             movieName.text.toString(),
             movieDesc.text.toString(),
             language.text.toString(),
@@ -96,7 +140,7 @@ class MainActivity : AppCompatActivity() {
             reason2)
 
     }
-    fun suitable(v:View) {
+    fun checkSuitable(v: View) {
         if (notSuitable.isChecked){
             notSuitableGroup.visibility=View.VISIBLE
         } else {
@@ -105,8 +149,8 @@ class MainActivity : AppCompatActivity() {
             notSuitableGroup.visibility=View.INVISIBLE
         }
     }
-    fun viewDetails(v:View){
-        updateMovie(v)
+    private fun viewDetails(){
+        updateMovie()
         if(movieName.text.isNotEmpty()&&movieDesc.text.isNotEmpty()&&releaseDate.text.isNotEmpty()) {
             startActivity(
                 Intent(this, MovieDetails::class.java)
@@ -116,16 +160,33 @@ class MainActivity : AppCompatActivity() {
                     .putExtra("releaseDate", newMovie.releaseDate)
                     .putExtra("suitable", newMovie.suitable2)
                     .putExtra("reason", newMovie.reason2)
+                    .putExtra("reviewText", "")
+                    .putExtra("reviewStar", 0f)
             )
         }
     }
     fun rateMovie(v:View){
-        updateMovie(v)
+        updateMovie()
         if(movieName.text.isNotEmpty()&&movieDesc.text.isNotEmpty()&&releaseDate.text.isNotEmpty()) {
             startActivity(
                 Intent(this, RateMovie::class.java)
                     .putExtra("movieName", newMovie.movieName)
             )
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.add,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if(item?.itemId == R.id.miAdd){
+            viewDetails()
+        }
+        if(item?.itemId == R.id.miClear){
+            clearScreen()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

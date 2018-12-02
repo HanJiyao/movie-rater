@@ -20,7 +20,7 @@
         </activity>
         <activity android:name=".RateMovie">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".AddMovie">
         </activity>
     </application>
 

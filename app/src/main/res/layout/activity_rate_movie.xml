@@ -17,12 +17,13 @@
             android:layout_width="match_parent"
             android:layout_height="36dp"/>
     <RatingBar
-            android:id="@+id/rating"
+            android:id="@+id/reviewStar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:rating="0"
             android:stepSize="0.1" />
     <EditText
+            android:id="@+id/reviewText"
             android:inputType="textMultiLine"
             android:lines="8"
             android:minLines="4"

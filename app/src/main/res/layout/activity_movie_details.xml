@@ -16,12 +16,12 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/movie_icon"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
         />
     </RelativeLayout>
     <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp"/>
+            android:layout_height="8dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
     />
     <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp"/>
+            android:layout_height="8dp"/>
     <TextView
             android:id="@+id/movieNameDisplay"
             android:layout_width="match_parent"
@@ -38,7 +38,7 @@
     />
     <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp"/>
+            android:layout_height="8dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
     />
     <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp"/>
+            android:layout_height="8dp"/>
     <TextView
             android:id="@+id/movieDescDisplay"
             android:layout_width="match_parent"
@@ -55,7 +55,7 @@
     />
     <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp"/>
+            android:layout_height="8dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -63,17 +63,31 @@
     />
     <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp"/>
-    <TextView
-            android:id="@+id/reviewDisplay"
-            android:layout_width="match_parent"
+            android:layout_height="8dp"/>
+    <LinearLayout
+            android:id="@+id/reviewSection"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/reviewsDefault"
-            android:textSize="20sp"
-    />
+            android:orientation="vertical">
+        <RatingBar
+                android:id="@+id/reviewStarDisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rating="0"
+                android:stepSize="0.1"
+                android:isIndicator="true"
+                android:visibility="gone"/>
+        <TextView
+                android:id="@+id/reviewDisplay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/reviewsDefault"
+                android:textSize="20sp"
+        />
+    </LinearLayout>
     <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp"/>
+            android:layout_height="8dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,7 +95,7 @@
     />
     <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp"/>
+            android:layout_height="8dp"/>
     <TextView
             android:id="@+id/movieLanguageDisplay"
             android:layout_width="match_parent"
@@ -90,14 +104,14 @@
     />
     <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp"/>
+            android:layout_height="8dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/releaseDate2"/>
     <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp"/>
+            android:layout_height="8dp"/>
     <TextView
             android:id="@+id/releaseDateDisplay"
             android:layout_width="match_parent"
@@ -106,14 +120,14 @@
     />
     <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp"/>
+            android:layout_height="8dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/notSuitable2"/>
     <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp"/>
+            android:layout_height="8dp"/>
     <TextView
             android:id="@+id/notSuitableDisplay"
             android:layout_width="match_parent"

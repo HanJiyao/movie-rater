@@ -27,7 +27,7 @@ class LandingPage : AppCompatActivity() {
 
     override fun onContextItemSelected(item: MenuItem?): Boolean {
         startActivity(
-            Intent(this, MainActivity::class.java)
+            Intent(this, AddMovie::class.java)
         )
         return super.onContextItemSelected(item)
 
