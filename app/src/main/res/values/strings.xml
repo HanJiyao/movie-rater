@@ -28,4 +28,6 @@
     <string name="reviews">Reviews:</string>
     <string name="reviewsDefault">No Reviews yet.\nLong press here to add your review</string>
     <string name="submit">SUBMIT</string>
+    <string name="save">SAVE</string>
+    <string name="cancel">CANCEL</string>
 </resources>

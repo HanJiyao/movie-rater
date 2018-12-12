@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".AddMovie">
         </activity>
+        <activity android:name=".EditMovie">
+        </activity>
     </application>
 
 </manifest>

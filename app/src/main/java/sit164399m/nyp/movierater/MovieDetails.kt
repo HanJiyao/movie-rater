@@ -47,6 +47,13 @@ class MovieDetails : AppCompatActivity() {
         startActivity(
             Intent(this, LandingPage::class.java)
                 .putExtra("movieName", intent.getStringExtra("movieName"))
+                .putExtra("movieDesc", intent.getStringExtra("movieDesc"))
+                .putExtra("language", intent.getStringExtra("language"))
+                .putExtra("releaseDate", intent.getStringExtra("releaseDate"))
+                .putExtra("suitable", intent.getStringExtra("suitable"))
+                .putExtra("reason", intent.getStringExtra("reason"))
+                .putExtra("reviewText", intent.getStringExtra("reviewText"))
+                .putExtra("reviewStar", intent.getFloatExtra("reviewStar",0f))
         )
         return true
     }

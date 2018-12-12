@@ -9,27 +9,20 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.RadioButton
 import android.widget.TextView
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_add_movie.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AddMovie : AppCompatActivity() {
+class EditMovie : AppCompatActivity() {
 
-    class Movie (var movieName:String,var movieDesc:String,var language:String,var releaseDate:String,var suitable:String,
-                 var suitable2:String, var reason:String, var reason2:String, var review:String, var star:Float){
-        fun displayToast():String{
-            return "Title = " + this.movieName +
-                    "\nOverview = " + this.movieDesc +
-                    "\nRelease date = " + this.releaseDate +
-                    "\nLanguage = " + this.language +
-                    "\nSuitable for all ages = " + this.suitable + this.reason
-        }
-    }
+    class Movie (var movieName:String,var movieDesc:String,var language:String,var releaseDate:String,
+                 var suitable:String, var reason:String, var review:String, var star:Float)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_movie)
+
+        var userData = intent.getBundleExtra("userData")
 
         languageEnglish.isChecked = true
         notSuitable.isChecked = false
@@ -47,7 +40,7 @@ class AddMovie : AppCompatActivity() {
         }
 
         textView.setOnClickListener {
-            DatePickerDialog(this@AddMovie, dateSetListener,
+            DatePickerDialog(this@EditMovie, dateSetListener,
                 cal.get(Calendar.YEAR),
                 cal.get(Calendar.MONTH),
                 cal.get(Calendar.DAY_OF_MONTH)).show()
@@ -63,28 +56,24 @@ class AddMovie : AppCompatActivity() {
         return true
     }
 
-    var newMovie = Movie("","","","","","",
-        "","","",0f)
+    var newMovie = Movie("","","","","",
+        "","",0f)
 
     private fun updateMovie(){
         if(movieName.text.isEmpty()){movieName.error = "Field empty"}
         if(movieDesc.text.isEmpty()){movieDesc.error = "Field empty" }
         if(releaseDate.text.isEmpty()){releaseDate.error = "Field empty" }
         val language =  radioGroup.findViewById<View>(radioGroup.checkedRadioButtonId) as RadioButton
-        val suitable = if(notSuitable.isChecked) {"false\nReason:\n"}else{"true"}
         val suitable2 = if(notSuitable.isChecked) {"No"}else{"Yes"}
-        var reason = ""
         var reason2 = ""
         if(languageUsed.isChecked){
-            reason += "Language\n"
             reason2 += "Language Used "
         }
         if(violence.isChecked){
-            reason += "Violence\n"
             reason2 += "Violence "
         }
         newMovie = Movie(movieName.text.toString(), movieDesc.text.toString(), language.text.toString(),
-            releaseDate.text.toString(), suitable, suitable2, reason, reason2,"",0f)
+            releaseDate.text.toString(), suitable2, reason2,"",0f)
 
     }
 
@@ -98,27 +87,6 @@ class AddMovie : AppCompatActivity() {
         }
     }
 
-    private fun clearScreen(){
-        movieName.text.clear()
-        movieDesc.text.clear()
-        releaseDate.text.clear()
-        languageEnglish.isChecked = true
-        notSuitable.isChecked = false
-        notSuitableGroup.visibility=View.INVISIBLE
-        violence.isChecked=false
-        languageUsed.isChecked=false
-    }
-
-    fun addMovie(v:View){
-        updateMovie()
-        if(movieName.text.isNotEmpty()&&movieDesc.text.isNotEmpty()&&releaseDate.text.isNotEmpty()) {
-            Toast.makeText(
-                this, newMovie.displayToast()
-                , Toast.LENGTH_LONG
-            ).show()
-        }
-    }
-
     private fun viewDetails(){
         updateMovie()
         if(movieName.text.isNotEmpty()&&movieDesc.text.isNotEmpty()&&releaseDate.text.isNotEmpty()) {
@@ -128,8 +96,8 @@ class AddMovie : AppCompatActivity() {
                     .putExtra("movieDesc", newMovie.movieDesc)
                     .putExtra("language", newMovie.language)
                     .putExtra("releaseDate", newMovie.releaseDate)
-                    .putExtra("suitable", newMovie.suitable2)
-                    .putExtra("reason", newMovie.reason2)
+                    .putExtra("suitable", newMovie.suitable)
+                    .putExtra("reason", newMovie.reason)
                     .putExtra("reviewText", newMovie.review)
                     .putExtra("reviewStar", newMovie.star)
             )
@@ -142,11 +110,11 @@ class AddMovie : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if(item?.itemId == R.id.miAdd){
+        if(item?.itemId == R.id.miSave){
             viewDetails()
         }
-        if(item?.itemId == R.id.miClear){
-            clearScreen()
+        if(item?.itemId == R.id.miCancel){
+            onBackPressed()
         }
         return super.onOptionsItemSelected(item)
     }
