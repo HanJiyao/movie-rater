@@ -16,10 +16,18 @@ import java.util.*
 
 class AddMovie : AppCompatActivity() {
 
-    class Movie (var movieName:String,var movieDesc:String,var language:String,var releaseDate:String,var suitable:String,
-                 var suitable2:String, var reason:String, var reason2:String, var review:String, var star:Float){
+    class Movie (var movieName:String,
+                 var movieDesc:String,
+                 var language:String,
+                 var releaseDate:String,
+                 private var suitable:String,
+                 var suitable2:String,
+                 var reason:String,
+                 var reason2:String,
+                 var review:String,
+                 var star:Float){
         fun displayToast():String{
-            return "Title = " + this.movieName +
+            return  "Title = " + this.movieName +
                     "\nOverview = " + this.movieDesc +
                     "\nRelease date = " + this.releaseDate +
                     "\nLanguage = " + this.language +
@@ -63,7 +71,7 @@ class AddMovie : AppCompatActivity() {
         return true
     }
 
-    var newMovie = Movie("","","","","","",
+    private var newMovie = Movie("","","","","","",
         "","","",0f)
 
     private fun updateMovie(){
@@ -74,14 +82,15 @@ class AddMovie : AppCompatActivity() {
         val suitable = if(notSuitable.isChecked) {"false\nReason:\n"}else{"true"}
         val suitable2 = if(notSuitable.isChecked) {"No"}else{"Yes"}
         var reason = ""
-        var reason2 = ""
-        if(languageUsed.isChecked){
-            reason += "Language\n"
-            reason2 += "Language Used "
-        }
-        if(violence.isChecked){
-            reason += "Violence\n"
-            reason2 += "Violence "
+        var reason2 = "No Reason Specified "
+        if(languageUsed.isChecked){reason += "Language\n" }
+        if(violence.isChecked){ reason += "Violence\n" }
+        if(languageUsed.isChecked&&!violence.isChecked){
+            reason2 = "Language Used "
+        } else if(violence.isChecked&&!languageUsed.isChecked){
+            reason2 = "Violence "
+        } else if(violence.isChecked&&languageUsed.isChecked){
+            reason2 = "Language Used and Violence "
         }
         newMovie = Movie(movieName.text.toString(), movieDesc.text.toString(), language.text.toString(),
             releaseDate.text.toString(), suitable, suitable2, reason, reason2,"",0f)
@@ -89,6 +98,7 @@ class AddMovie : AppCompatActivity() {
     }
 
     fun checkSuitable(v: View) {
+        v.display
         if (notSuitable.isChecked){
             notSuitableGroup.visibility=View.VISIBLE
         } else {
@@ -109,12 +119,12 @@ class AddMovie : AppCompatActivity() {
         languageUsed.isChecked=false
     }
 
-    fun addMovie(v:View){
+    private fun addMovie(){
         updateMovie()
         if(movieName.text.isNotEmpty()&&movieDesc.text.isNotEmpty()&&releaseDate.text.isNotEmpty()) {
             Toast.makeText(
                 this, newMovie.displayToast()
-                , Toast.LENGTH_LONG
+                , Toast.LENGTH_SHORT
             ).show()
         }
     }
@@ -143,6 +153,7 @@ class AddMovie : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if(item?.itemId == R.id.miAdd){
+            addMovie()
             viewDetails()
         }
         if(item?.itemId == R.id.miClear){

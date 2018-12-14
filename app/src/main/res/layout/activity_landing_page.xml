@@ -5,11 +5,4 @@
         android:orientation="vertical"
         android:id="@+id/movieList"
         xmlns:android="http://schemas.android.com/apk/res/android">
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@drawable/border"
-                android:id="@+id/movieListItem"
-                xmlns:android="http://schemas.android.com/apk/res/android"/>
 </LinearLayout>

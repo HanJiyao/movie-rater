@@ -22,8 +22,6 @@ class EditMovie : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_movie)
 
-        var userData = intent.getBundleExtra("userData")
-
         languageEnglish.isChecked = true
         notSuitable.isChecked = false
 
@@ -49,6 +47,30 @@ class EditMovie : AppCompatActivity() {
         val actionbar = supportActionBar
         actionbar!!.title = "MovieRater"
         actionbar.setDisplayHomeAsUpEnabled(true)
+
+        movieName.setText(intent.getStringExtra("movieName"))
+        movieDesc.setText(intent.getStringExtra("movieDesc"))
+        when(intent.getStringExtra("language")){
+            "English" -> languageEnglish.isChecked = true
+            "Chinese" -> languageChinese.isChecked = true
+            "Malay" -> languageMalay.isChecked = true
+            "Tamil" -> languageTamil.isChecked = true
+        }
+        releaseDate.setText(intent.getStringExtra("releaseDate"))
+        when(intent.getStringExtra("suitable")){
+            "No" -> {
+                notSuitable.isChecked = true
+                notSuitableGroup.visibility=View.VISIBLE
+                when(intent.getStringExtra("reason")){
+                    "Language Used "->{languageUsed.isChecked = true}
+                    "Violence "->{violence.isChecked = true}
+                    "Language Used and Violence "->{
+                        languageUsed.isChecked = true
+                        violence.isChecked = true
+                    }
+                }
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -56,7 +78,7 @@ class EditMovie : AppCompatActivity() {
         return true
     }
 
-    var newMovie = Movie("","","","","",
+    private var newMovie = Movie("","","","","",
         "","",0f)
 
     private fun updateMovie(){
@@ -65,19 +87,22 @@ class EditMovie : AppCompatActivity() {
         if(releaseDate.text.isEmpty()){releaseDate.error = "Field empty" }
         val language =  radioGroup.findViewById<View>(radioGroup.checkedRadioButtonId) as RadioButton
         val suitable2 = if(notSuitable.isChecked) {"No"}else{"Yes"}
-        var reason2 = ""
+        var reason2 = "No Reason Specified "
         if(languageUsed.isChecked){
-            reason2 += "Language Used "
-        }
-        if(violence.isChecked){
-            reason2 += "Violence "
+            reason2 = "Language Used "
+        } else if(violence.isChecked){
+            reason2 = "Violence "
+        } else if(violence.isChecked&&languageUsed.isChecked){
+            reason2 = "Language Used and Violence "
         }
         newMovie = Movie(movieName.text.toString(), movieDesc.text.toString(), language.text.toString(),
-            releaseDate.text.toString(), suitable2, reason2,"",0f)
+            releaseDate.text.toString(), suitable2, reason2,intent.getStringExtra("reviewText"),
+            intent.getFloatExtra("reviewStar",0f))
 
     }
 
     fun checkSuitable(v: View) {
+        v.display
         if (notSuitable.isChecked){
             notSuitableGroup.visibility=View.VISIBLE
         } else {
@@ -92,6 +117,7 @@ class EditMovie : AppCompatActivity() {
         if(movieName.text.isNotEmpty()&&movieDesc.text.isNotEmpty()&&releaseDate.text.isNotEmpty()) {
             startActivity(
                 Intent(this, MovieDetails::class.java)
+                    .putExtra("movieIndex",intent.getIntExtra("movieIndex",0))
                     .putExtra("movieName", newMovie.movieName)
                     .putExtra("movieDesc", newMovie.movieDesc)
                     .putExtra("language", newMovie.language)
@@ -105,7 +131,7 @@ class EditMovie : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.add,menu)
+        menuInflater.inflate(R.menu.edit,menu)
         return super.onCreateOptionsMenu(menu)
     }
 

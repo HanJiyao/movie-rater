@@ -16,8 +16,8 @@ class RateMovie : AppCompatActivity() {
         val actionbar = supportActionBar
         actionbar!!.title = "MovieRater"
         actionbar.setDisplayHomeAsUpEnabled(true)
-
-        rateMovie.text = "Enter your review for the movie: "+intent.getStringExtra("movieName")
+        val ratingText = "Enter your review for the movie: "+intent.getStringExtra("movieName")
+        rateMovie.text = ratingText
         reviewStar.rating = intent.getFloatExtra("reviewStar",0f)
         reviewText.setText(intent.getStringExtra("reviewText"))
     }
@@ -30,6 +30,7 @@ class RateMovie : AppCompatActivity() {
         if(item?.itemId == R.id.miSubmit){
             startActivity(
                 Intent(this, MovieDetails::class.java)
+                    .putExtra("movieIndex",intent.getIntExtra("movieIndex",0))
                     .putExtra("movieName", intent.getStringExtra("movieName"))
                     .putExtra("movieDesc", intent.getStringExtra("movieDesc"))
                     .putExtra("language", intent.getStringExtra("language"))
