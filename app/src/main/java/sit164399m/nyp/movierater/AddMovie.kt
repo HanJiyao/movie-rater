@@ -132,6 +132,7 @@ class AddMovie : AppCompatActivity() {
     private fun viewDetails(){
         updateMovie()
         if(movieName.text.isNotEmpty()&&movieDesc.text.isNotEmpty()&&releaseDate.text.isNotEmpty()) {
+            movieIndex = 0
             startActivity(
                 Intent(this, MovieDetails::class.java)
                     .putExtra("movieName", newMovie.movieName)
@@ -142,7 +143,9 @@ class AddMovie : AppCompatActivity() {
                     .putExtra("reason", newMovie.reason2)
                     .putExtra("reviewText", newMovie.review)
                     .putExtra("reviewStar", newMovie.star)
+                    .addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT)
             )
+            finish()
         }
     }
 

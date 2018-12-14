@@ -1,5 +1,6 @@
 package sit164399m.nyp.movierater
 
+import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -28,18 +29,14 @@ class RateMovie : AppCompatActivity() {
     }
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if(item?.itemId == R.id.miSubmit){
-            startActivity(
-                Intent(this, MovieDetails::class.java)
-                    .putExtra("movieIndex",intent.getIntExtra("movieIndex",0))
-                    .putExtra("movieName", intent.getStringExtra("movieName"))
-                    .putExtra("movieDesc", intent.getStringExtra("movieDesc"))
-                    .putExtra("language", intent.getStringExtra("language"))
-                    .putExtra("releaseDate", intent.getStringExtra("releaseDate"))
-                    .putExtra("suitable", intent.getStringExtra("suitable"))
-                    .putExtra("reason", intent.getStringExtra("reason"))
+            if (reviewStar.rating != 0f && reviewText.text.isNotEmpty() ) {
+                setResult(Activity.RESULT_OK, Intent()
                     .putExtra("reviewText", reviewText.text.toString())
-                    .putExtra("reviewStar", reviewStar.rating)
-            )
+                    .putExtra("reviewStar", reviewStar.rating))
+            } else {
+                setResult(Activity.RESULT_CANCELED)
+            }
+            finish()
         }
         return super.onOptionsItemSelected(item)
     }

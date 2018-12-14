@@ -117,7 +117,6 @@ class EditMovie : AppCompatActivity() {
         if(movieName.text.isNotEmpty()&&movieDesc.text.isNotEmpty()&&releaseDate.text.isNotEmpty()) {
             startActivity(
                 Intent(this, MovieDetails::class.java)
-                    .putExtra("movieIndex",intent.getIntExtra("movieIndex",0))
                     .putExtra("movieName", newMovie.movieName)
                     .putExtra("movieDesc", newMovie.movieDesc)
                     .putExtra("language", newMovie.language)
@@ -126,7 +125,9 @@ class EditMovie : AppCompatActivity() {
                     .putExtra("reason", newMovie.reason)
                     .putExtra("reviewText", newMovie.review)
                     .putExtra("reviewStar", newMovie.star)
+                    .addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT)
             )
+            finish()
         }
     }
 
